@@ -1,4 +1,4 @@
-# ParallelMath: An Evaluation of Mathematical Reasoning in (M)LLMs
+# An Evaluation of Mathematical Reasoning in (M)LLMs
 
 This repository contains dataset used in the paper. 
 <br>
