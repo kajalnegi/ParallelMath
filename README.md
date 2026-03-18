@@ -2,7 +2,7 @@
 
 This repository contains dataset used in the paper. 
 <br>
-**identicalQA**: We present identicalQA, which contains pairs of geometric math problems whose questions can be solved using the properties of parallel lines, triangles, rectangles, squares, pentagons, hexagons, and trapezoids.
+**ParallelMath**: We present ParallelMath, which contains pairs of geometric math problems whose questions can be solved using the properties of parallel lines, triangles, rectangles, squares, pentagons, hexagons, and trapezoids.
 <br>
 <br>
 **NoUni**: We present 300 samples of math problems with no solution or infinitely many solution.
