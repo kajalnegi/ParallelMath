@@ -26,7 +26,7 @@ For parsing the model answer following commands are used.
 
 <br>
 
-*python parsing_generated_output.py --input_filepath <input_filepath>* --model_answer_column <generated_response> --answer <answer> *
+*python parsing_generated_output.py --input_filepath <input_filepath> --model_answer_column <generated_response> --answer <answer> *
 
 <br>
 
