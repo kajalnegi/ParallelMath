@@ -26,13 +26,13 @@ For parsing the model answer following commands are used.
 
 <br>
 
-*python parsing_generated_output.py --input_filepath <input_filepath>* --model_answer_column <generated_response> --true_answer_column <answer>
+*python parsing_generated_output.py --input_filepath <input_filepath>* --model_answer_column <generated_response> --true_answer_column <answer>*
 
 <br>
 
-*python no solution parse.py --input_directory input.csv --model_answer_column generated_response --true_answer_column answer*
+*python no solution parse.py --input_directory <input.csv> --model_answer_column <generated_response> --true_answer_column <answer>*
 
 <br>
 
-*python parse_infinite_solution.py --input_directory input.csv --model_answer_column generated_response --true_answer_column answer*
+*python parse_infinite_solution.py --input_directory <input.csv> --model_answer_column <generated_response> --true_answer_column <answer>*
 <br>
