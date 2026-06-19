@@ -13,11 +13,20 @@ from create_samples_parallel_lines import generate_samples_parallel_lines
 
 def main(output_dir):
     if os.path.exists(output_dir):
-        pass
+        os.mkdir(output_dir+'circle/')
+        os.mkdir(output_dir+'similar_triangle/')
+        os.mkdir(output_dir+'parallel_lines/')
+        os.mkdir(output_dir+'two_lines/')
+        os.mkdir(output_dir+'pentagon/')
+        os.mkdir(output_dir+'triangle/')
+        os.mkdir(output_dir+'hexagon/')
+        os.mkdir(output_dir+'trapezoid/')
+        os.mkdir(output_dir+'rectangle/')
+        os.mkdir(output_dir+'square/')
     else:
         try:
             os.mkdir(output_dir)
-            os.mkdir(output_dir+'circle/')#os.path.join([os.getcwd(),output_dir]))
+            os.mkdir(output_dir+'circle/')
             os.mkdir(output_dir+'similar_triangle/')
             os.mkdir(output_dir+'parallel_lines/')
             os.mkdir(output_dir+'two_lines/')
@@ -57,7 +66,7 @@ def load_args():
 if __name__ == '__main__':
     """
     sample usage:
-    python create_samples.py --output_directory ./datasets/
+    python create_samples_geometry.py --output_directory ./datasets/
     
     """
     args = load_args()

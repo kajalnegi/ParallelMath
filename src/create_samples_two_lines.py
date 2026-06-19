@@ -501,7 +501,7 @@ triangle_type = [
 
 
 
-def generate_samples_two_lines(output_dir, i):
+def generate_samples_two_lines(output_dir, i, no_solution=False):
     df = pd.DataFrame(columns=['id', 'image_path', 'question', 'answer', ])
     angles = list(range(50, 106,10))
     done_ang = []
@@ -517,7 +517,7 @@ def generate_samples_two_lines(output_dir, i):
     size=200 
     #i = 143
     j = 1
-    total = 234
+    total = 500
     for given_ang_1 in f_g_ang:
         #for ang in angles:
         #given_ang_1 = random.choice(f_g_ang)
@@ -574,26 +574,24 @@ def generate_samples_two_lines(output_dir, i):
                         question = np.random.choice(two_line_type).format(given_letter = "P", find_letter = "R",
                                                                                   ang_=ang_p, given_letter_1="Q", ang_1=ang_q)
                         print(question)
-                        d.update({"image_path": [f"./{directory}/vertical.png", f"./{directory}/horizontal.png"]})
+                        d.update({"image_path": [f"{output_dir}{directory}/vertical.png", f"{output_dir}{directory}/horizontal.png"]})
                         d.update({"question": question})#f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle A of {ang_a}. What is the value of angle B?"})
                         d.update({"answer": int(ang_r)})
                         d.update({"id": i})
+                        d.update({"solution cardinality": 1})
+                        if no_solution == True:
+                            d.update({"answer": "no solution"})
+                            d.update({"solution cardinality": 0})
+                            from create_samples_no_solution import alter_digit
+                            d.update({"question":alter_digit(question)})
+                        d.update({"solution space": '$\mathbb{R}$'})
                         print(json.dumps(d, indent=4,))# fp=f"{output_dir}{directory}/"+data1))
                         df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                         r.write(json.dumps(d, indent=4))
                         r.close()
                         #i = i+1
                         d.update({"id": i})
-                        #data = 'data_2.json'
-                        #r = open(f"{output_dir}/{ang_t}_{ang}/"+data, 'w')
-                        #r = open(f"{output_dir}{directory}/"+data2, 'w')
-                        #question = np.random.choice(triangle_type).format(given_letter = "P", find_letter = "Q",
-                         #                                                         ang_=int(ang_p), given_letter_1="R", ang_1=int(ang_r))
-                       # d.update({"question":question})# f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle B of {ang_b}. What is the value of angle A?"})
-                       # d.update({"answer": ang_q})
-                        #df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
-                        #r.write(json.dumps(d, indent=4))
-                        #r.close()
+                        
                         i = i+1
                         j =1
             

@@ -571,7 +571,7 @@ def solution(given, find_side):
         return 1
 
 
-def generate_samples_triangle_lines(output_dir, i):
+def generate_samples_triangle_lines(output_dir, i, no_solution=False):
     #i = 0
     df = pd.DataFrame(columns=['id', 'image_path', 'question', 'answer', ])
     #df1 = pd.DataFrame(columns=['id', 'image_path', 'question', 'answer', ])
@@ -645,7 +645,7 @@ def generate_samples_triangle_lines(output_dir, i):
                                               given_letter3=list(given.keys())[2], given_side3=list(given.values())[2],  find_letter = find_side,
                                                                           )
                 print(question)
-                d.update({"image_path": [f"./{directory}/vertical.png", f"./{directory}/horizontal.png"]})
+                d.update({"image_path": [f"{folder}/vertical.png", f"{folder}/horizontal.png"]})
                 d.update({"question": question})#f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle A of {ang_a}. What is the value of angle B?"})
                 
                 d.update({"id": i})
@@ -653,6 +653,13 @@ def generate_samples_triangle_lines(output_dir, i):
                     #df1 = pd.concat([df1,pd.DataFrame(d)], ignore_index=True)
                 #if ans !=None:
                 d.update({"answer": ang_total_side[find_side]})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df, pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()

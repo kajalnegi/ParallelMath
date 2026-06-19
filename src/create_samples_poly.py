@@ -949,7 +949,7 @@ pentagon_type = [
 
 
 
-def generate_samples_pentagon(output_dir, i):
+def generate_samples_pentagon(output_dir, i, no_solution=False):
     #i = 0
     df = pd.DataFrame(columns=['id', 'image_path', 'question', 'answer', ])
     angles = list(range(45,146,20))
@@ -986,6 +986,13 @@ def generate_samples_pentagon(output_dir, i):
                 d.update({"question": question})#f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle A of {ang_a}. What is the value of angle B?"})
                 d.update({"answer": ang_b})
                 d.update({"id": i})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -998,6 +1005,13 @@ def generate_samples_pentagon(output_dir, i):
                                                                           ang_=ang_b, )
                 d.update({"question":question})# f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle B of {ang_b}. What is the value of angle A?"})
                 d.update({"answer": ang_a})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -1006,7 +1020,7 @@ def generate_samples_pentagon(output_dir, i):
     #df.to_csv(output_dir+'input.csv', index=False)
     return df, i
     
-def generate_samples_triangle(output_dir, i):
+def generate_samples_triangle(output_dir, i, no_solution=False):
     #i = 0
     df = pd.DataFrame(columns=['id', 'image_path', 'question', 'answer', ])
     angles = list(range(45,146,20))
@@ -1043,6 +1057,13 @@ def generate_samples_triangle(output_dir, i):
                 d.update({"question": question})#f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle A of {ang_a}. What is the value of angle B?"})
                 d.update({"answer": ang_b})
                 d.update({"id": i})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -1055,6 +1076,13 @@ def generate_samples_triangle(output_dir, i):
                                                                           ang_=ang_b, )
                 d.update({"question":question})# f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle B of {ang_b}. What is the value of angle A?"})
                 d.update({"answer": ang_a})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -1063,7 +1091,7 @@ def generate_samples_triangle(output_dir, i):
     #df.to_csv(output_dir+'input.csv', index=False)
     return df, i
     
-def generate_samples_hexagon(output_dir, i):
+def generate_samples_hexagon(output_dir, i, no_solution=False):
     #i = 0
     df = pd.DataFrame(columns=['id', 'image_path', 'question', 'answer', ])
     angles = list(range(45,146,20))
@@ -1096,10 +1124,17 @@ def generate_samples_hexagon(output_dir, i):
                 question = random.choice(hexagon_type).format(given_letter = "A", find_letter = "B",
                                                                           ang_=ang_a, )
                 print(question)
-                d.update({"image_path": [f"./{directory}/vertical.png", f"./{directory}/horizontal.png"]})
+                d.update({"image_path": [f"{output_dir}{directory}/vertical.png", f"{output_dir}{directory}/horizontal.png"]})
                 d.update({"question": question})#f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle A of {ang_a}. What is the value of angle B?"})
                 d.update({"answer": ang_b})
                 d.update({"id": i})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -1112,6 +1147,13 @@ def generate_samples_hexagon(output_dir, i):
                                                                           ang_=ang_b, )
                 d.update({"question":question})# f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle B of {ang_b}. What is the value of angle A?"})
                 d.update({"answer": ang_a})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -1121,7 +1163,7 @@ def generate_samples_hexagon(output_dir, i):
     return df, i
 
 
-def generate_samples_trapezoid(output_dir, i):
+def generate_samples_trapezoid(output_dir, i, no_solution=False):
     #i = 0
     df = pd.DataFrame(columns=['id', 'image_path', 'question', 'answer', ])
     angles = list(range(45,146,20))
@@ -1158,6 +1200,13 @@ def generate_samples_trapezoid(output_dir, i):
                 d.update({"question": question})#f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle A of {ang_a}. What is the value of angle B?"})
                 d.update({"answer": ang_b})
                 d.update({"id": i})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -1170,6 +1219,13 @@ def generate_samples_trapezoid(output_dir, i):
                                                                           ang_=ang_b, )
                 d.update({"question":question})# f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle B of {ang_b}. What is the value of angle A?"})
                 d.update({"answer": ang_a})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -1178,7 +1234,7 @@ def generate_samples_trapezoid(output_dir, i):
     #df.to_csv(output_dir+'input.csv', index=False)
     return df, i
 
-def generate_samples_rectangle(output_dir, i):
+def generate_samples_rectangle(output_dir, i, no_solution=False):
     #i = 0
     df = pd.DataFrame(columns=['id', 'image_path', 'question', 'answer', ])
     angles = list(range(45,146,20))
@@ -1215,6 +1271,13 @@ def generate_samples_rectangle(output_dir, i):
                 d.update({"question": question})#f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle A of {ang_a}. What is the value of angle B?"})
                 d.update({"answer": ang_b})
                 d.update({"id": i})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -1227,6 +1290,13 @@ def generate_samples_rectangle(output_dir, i):
                                                                           ang_=ang_b, )
                 d.update({"question":question})# f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle B of {ang_b}. What is the value of angle A?"})
                 d.update({"answer": ang_a})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -1235,7 +1305,7 @@ def generate_samples_rectangle(output_dir, i):
     #df.to_csv(output_dir+'input.csv', index=False)
     return df, i
     
-def generate_samples_square(output_dir, i):
+def generate_samples_square(output_dir, i, no_solution=False):
     #i = 0
     df = pd.DataFrame(columns=['id', 'image_path', 'question', 'answer', ])
     angles = list(range(45,146,20))
@@ -1272,6 +1342,13 @@ def generate_samples_square(output_dir, i):
                 d.update({"question": question})#f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle A of {ang_a}. What is the value of angle B?"})
                 d.update({"answer": ang_b})
                 d.update({"id": i})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()
@@ -1284,6 +1361,13 @@ def generate_samples_square(output_dir, i):
                                                                           ang_=ang_b, )
                 d.update({"question":question})# f"As shown in the figure, lines L1 and L2 are parallel to each other, and another line cuts both lines, forming an angle B of {ang_b}. What is the value of angle A?"})
                 d.update({"answer": ang_a})
+                d.update({"solution cardinality": 1})
+                if no_solution == True:
+                    d.update({"answer": "no solution"})
+                    d.update({"solution cardinality": 0})
+                    from create_samples_no_solution import alter_digit
+                    d.update({"question":alter_digit(question)})
+                d.update({"solution space": '$\mathbb{R}$'})
                 df = pd.concat([df,pd.DataFrame(d)], ignore_index=True)
                 r.write(json.dumps(d, indent=4))
                 r.close()

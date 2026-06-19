@@ -133,7 +133,7 @@ def load_args():
 if __name__ == '__main__':
     """
     sample usage:
-    python infinite_solution.py --output_directory . --n_samples 5
+    python create_samples_infinite_solution.py --output_directory . --n_samples 5
     
     """
     args = load_args()

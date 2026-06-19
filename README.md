@@ -1,6 +1,6 @@
 # An Evaluation of Mathematical Reasoning in (M)LLMs
 
-This repository contains dataset used in the paper. 
+This repository contains dataset and code used in the paper. 
 <br>
 **ParallelMath**:  The dataset ParallelMath contains pairs of geometric math problems whose questions can be solved using the properties of parallel lines, triangles, rectangles, squares, pentagons, hexagons, and trapezoids.
 <br>
@@ -20,4 +20,19 @@ to the images, with the text question and answer remaining the same.
 
 **MATH-V**: (https://huggingface.co/datasets/MathLLMs/MathVision)
 
+<br>
 
+For parsing the model answer following commands are used.
+
+<br>
+
+*python parsing_generated_output.py --input_filepath <input_filepath>* --model_answer_column <generated_response> --true_answer_column <answer>
+
+<br>
+
+*python no solution parse.py --input_directory input.csv --model_answer_column generated_response --true_answer_column answer*
+
+<br>
+
+*python parse_infinite_solution.py --input_directory input.csv --model_answer_column generated_response --true_answer_column answer*
+<br>

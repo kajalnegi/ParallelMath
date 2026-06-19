@@ -270,15 +270,13 @@ def load_args():
     
     return vars(parser.parse_args())
 
-def main(input_dir, model_answer_column):
+def main(input_dir, model_answer_column, true_answer_column):
     df = pd.read_csv(input_dir)
     column = model_answer_column
     new_column = 'generated_response_answer'
-    df[new_column] = df[['answer', column]].apply(check_if_true_answer_arrived, axis=1, result_type="expand")#extract_answer(df, column, new_column)
-
-
+    df[true_answer_column] = df[true_answer_column].str.strip()
+    df[new_column] = df[[true_answer_column, column]].apply(check_if_true_answer_arrived, axis=1, result_type="expand")
     df['cardinality'] = df.apply(in_words_detection, axis=1, result_type="expand")
-
 
     
     print("---- Correct answer count ----------", df[df[new_column]==True].shape[0])
@@ -290,14 +288,15 @@ def main(input_dir, model_answer_column):
 if __name__ == '__main__':
     """
     sample usage:
-    python parse_infinite_solution.py --input_directory input.csv --model_answer_column generated_response
+    python parse_infinite_solution.py --input_directory input.csv --model_answer_column generated_response --true_answer_column answer
     
     """
     args = load_args()
     main(
         
         input_dir=args['input_directory'],
-        model_answer_column=args['model_answer_column']
+        model_answer_column=args['model_answer_column'],
+        true_answer_column= args['true_answer_column']
         
     )
 
